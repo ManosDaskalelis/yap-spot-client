@@ -1,0 +1,38 @@
+# Claude Code
+.claude/
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+yap-spot-client/dist/
+
+# Angular cache
+.angular/
+yap-spot-client/.angular/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Package lock (keep package-lock.json, ignore yarn.lock if not used)
+yarn.lock
