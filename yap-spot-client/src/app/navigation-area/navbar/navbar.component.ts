@@ -7,5 +7,5 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {
-
+  selected: number | null = null;
 }
