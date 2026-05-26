@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { SecondaryNavbarComponent } from '../secondary-navbar/secondary-navbar.component';
 import { NavSection } from '../../shared/models/nav-section.enum';
@@ -10,5 +10,5 @@ import { NavSection } from '../../shared/models/nav-section.enum';
 })
 export class NavbarComponent {
   readonly NavSection = NavSection;
-  selected: NavSection | null = null;
+  selected = signal<NavSection | null>(null);
 }
