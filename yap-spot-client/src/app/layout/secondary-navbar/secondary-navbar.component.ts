@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-secondary-navbar',
@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: './secondary-navbar.component.html',
   styleUrl: './secondary-navbar.component.css',
 })
-export class SecondaryNavbarComponent {}
+export class SecondaryNavbarComponent {
+  collapsed = signal(false);
+
+  collapse() {
+    this.collapsed.set(!this.collapsed());
+  }
+}

@@ -1,22 +1,26 @@
-<div class="flex flex-col w- h-screen p-4 gap-2 bg-[#0e101b79] w-fit">
-  <div class="flex justify-between gap-2 items-center p-2">
+<div class="flex flex-col w-fit h-screen p-4 gap-2 bg-[#0e101b79]">
+  <div (click)="collapse()" class="flex justify-between gap-2 items-center p-2 cursor-pointer select-none">
     <i class="pi pi-tablet"></i>
     <span>Yap spot</span>
-    <i class="pi pi-arrow-down"></i>
+    <i class="pi transition-transform duration-300"
+       [class.pi-arrow-down]="!collapsed()"
+       [class.pi-arrow-up]="collapsed()"></i>
   </div>
   <hr class="border-t border-[#2a2d4a] mx-2" />
 
-  <button
-    class="relative bg-[#1f243e] border border-[#1d1943] gap-2 rounded-[10px] flex items-center justify-center p-4 transition-colors"
-  >
-    <i class="pi pi-home"></i>
-    <span>Home</span>
-  </button>
+  @if (!collapsed()) {
+    <button
+      class="relative bg-[#1f243e] border border-[#1d1943] gap-2 rounded-[10px] flex items-center justify-center p-4 transition-colors"
+    >
+      <i class="pi pi-home"></i>
+      <span>Home</span>
+    </button>
 
-  <button
-    class="relative bg-[#1f243e] border border-[#1d1943] gap-2 rounded-[10px] flex items-center justify-center p-4 transition-colors"
-  >
-    <i class="pi pi-comments"></i>
-    <span>Direct Messages</span>
-  </button>
+    <button
+      class="relative bg-[#1f243e] border border-[#1d1943] gap-2 rounded-[10px] flex items-center justify-center p-4 transition-colors"
+    >
+      <i class="pi pi-comments"></i>
+      <span>Direct Messages</span>
+    </button>
+  }
 </div>
