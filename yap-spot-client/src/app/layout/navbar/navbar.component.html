@@ -1,0 +1,35 @@
+<div class="flex w-full h-screen bg-[#131420]">
+  <div class="flex flex-col h-screen p-4 gap-2 bg-[#0c0e18] w-fit">
+    <div class="flex justify-center p-2"><i class="pi pi-apple"></i></div>
+
+    <button
+      (click)="selected = NavSection.Friends"
+      class="relative bg-[#1f243e] border border-[#1d1943] rounded-[10px] flex justify-center p-4 transition-colors"
+      [class.bg-purple-700]="selected === NavSection.Friends"
+    >
+      @if (selected === NavSection.Friends) {
+        <span
+          class="absolute -left-4 top-1/2 -translate-y-1/2 w-[3px] h-[60%] bg-[#7c5af0] rounded-r-full"
+        ></span>
+      }
+      <i class="pi pi-users"></i>
+    </button>
+
+    <button
+      (click)="selected = NavSection.Servers"
+      class="relative bg-[#1f243e] border border-[#1d1943] rounded-[10px] flex justify-center p-4 transition-colors"
+      [class.bg-purple-700]="selected === NavSection.Servers"
+    >
+      @if (selected === NavSection.Servers) {
+        <span
+          class="absolute -left-4 top-1/2 -translate-y-1/2 w-[3px] h-[60%] bg-[#7c5af0] rounded-r-full"
+        ></span>
+      }
+      <i class="pi pi-server"></i>
+    </button>
+  </div>
+
+  @if (selected === NavSection.Friends) {
+    <app-secondary-navbar></app-secondary-navbar>
+  }
+</div>
