@@ -1,6 +1,7 @@
-<div class="flex w-full h-screen bg-[#131420]">
-  <div class="flex flex-col h-screen p-4 gap-2 bg-[#0c0e18] w-fit">
-    <div class="flex justify-center p-2"><i class="pi pi-apple"></i></div>
+<div class="flex w-fit ">
+  <div class="flex flex-col h-screen p-4 gap-2 bg-secondary w-fit">
+    <div class="flex justify-center p-2">
+    </div>
 
     <button
       (click)="selected.set(NavSection.Friends)"
@@ -28,7 +29,6 @@
       <i class="pi pi-server"></i>
     </button>
   </div>
-
   @if (selected() === NavSection.Friends) {
     <app-secondary-navbar></app-secondary-navbar>
   }
