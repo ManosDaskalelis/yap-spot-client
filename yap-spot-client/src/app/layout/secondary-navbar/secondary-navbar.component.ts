@@ -7,9 +7,4 @@ import { Component, signal } from '@angular/core';
   styleUrl: './secondary-navbar.component.css',
 })
 export class SecondaryNavbarComponent {
-  collapsed = signal(false);
-
-  collapse() {
-    this.collapsed.set(!this.collapsed());
-  }
 }

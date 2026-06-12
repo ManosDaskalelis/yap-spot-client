@@ -1,26 +1,10 @@
-<div class="flex flex-col w-fit h-full p-4 gap-2 bg-bg-sidebar text-center">
-  <div (click)="collapse()" class="flex justify-between gap-2 items-center p-2 cursor-pointer select-none">
-    <i class="pi pi-tablet"></i>
-    <span>Yap spot</span>
-    <i class="pi transition-transform duration-300"
-       [class.pi-arrow-down]="!collapsed()"
-       [class.pi-arrow-up]="collapsed()"></i>
+<div class="flex flex-col w-fit h-full border-l-[#2a3345] p-4 gap-2 bg-bg-sidebar-infobar">
+  <div class="flex flex-col gap-2 p-2">
+    <span class="font-sans" >yap-spot</span>
+    <div class="flex bg-bg-hover p-3 items-center  gap-2 border border-border rounded-sm">
+      <i class="pi pi-search"></i>
+      <input class="bg-[#30302e] border border-border rounded-sm p-1 outline-none" type="text" placeholder="Find a room...">
+    </div>
   </div>
   <hr class="border-t border-divider mx-2" />
-
-  @if (!collapsed()) {
-    <button
-      class="relative bg-bg-elevated border border-border gap-2 rounded-md flex items-center justify-center p-4 transition-colors"
-    >
-      <i class="pi pi-home"></i>
-      <span>Home</span>
-    </button>
-
-    <button
-      class="relative bg-bg-elevated border border-border gap-2 rounded-md flex items-center justify-center p-4 transition-colors"
-    >
-      <i class="pi pi-comments"></i>
-      <span>Direct Messages</span>
-    </button>
-  }
 </div>

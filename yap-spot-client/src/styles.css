@@ -20,8 +20,9 @@ body {
     --color-warning:     #F59E0B;
 
     /* ─── Backgrounds ─────────────────────────────────── */
-    --color-bg-main:     #0B0E14;
-    --color-bg-sidebar:  #11151E;
+    --color-bg-main:     #0b0e14;
+    --color-bg-sidebar:  #0d1017;
+    --color-bg-sidebar-infobar: #11151E;
     --color-bg-elevated: #171C27;
     --color-bg-hover:    #1F2533;
     --color-bg-card:     #1B2230;
@@ -45,40 +46,28 @@ body {
     --color-unread-badge: #7C3AED;
 
     /* ─── Typography ──────────────────────────────────── */
-    --font-sans: 'Inter', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
 
-    --text-display: 2.5rem;
-    --text-h1:      2rem;
-    --text-h2:      1.5rem;
-    --text-h3:      1.25rem;
-    --text-body:    1rem;
-    --text-small:   0.875rem;
-    --text-caption: 0.75rem;
+    --text-xs:   11px;
+    --text-sm:   13px;
+    --text-base: 14px;
+    --text-lg:   16px;
+    --text-xl:   18px;
 
     --leading-normal: 1.5;
 
-    /* ─── Spacing ─────────────────────────────────────── */
-    --spacing-1: 0.25rem;
-    --spacing-2: 0.5rem;
-    --spacing-3: 0.75rem;
-    --spacing-4: 1rem;
-    --spacing-6: 1.5rem;
-    --spacing-8: 2rem;
-    --spacing-10: 2.5rem;
-    --spacing-12: 3rem;
-    --spacing-16: 4rem;
-
     /* ─── Border Radius ───────────────────────────────── */
-    --radius-sm: 0.5rem;
-    --radius-md: 0.75rem;
-    --radius-lg: 1rem;
-    --radius-xl: 1.25rem;
-    --radius-2xl: 1.5rem;
+    --radius-sm:  8px;
+    --radius-md:  10px;
+    --radius-lg:  12px;
+    --radius-xl:  16px;
 }
 
 .light-theme {
     --color-bg-main:     #F4F5F7;
     --color-bg-sidebar:  #EAECF0;
+    --color-bg-sidebar-infobar: #EAECF0;
     --color-bg-elevated: #FFFFFF;
     --color-bg-hover:    #E2E5EA;
     --color-bg-card:     #FFFFFF;
@@ -93,8 +82,9 @@ body {
 }
 
 .dark-theme {
-    --color-bg-main:     #0B0E14;
-    --color-bg-sidebar:  #11151E;
+    --color-bg-main:     #0b0e14;
+    --color-bg-sidebar:  #0d1017;
+    --color-bg-sidebar-infobar:#11151e;
     --color-bg-elevated: #171C27;
     --color-bg-hover:    #1F2533;
     --color-bg-card:     #1B2230;
