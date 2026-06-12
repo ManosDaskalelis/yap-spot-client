@@ -1,7 +1,6 @@
 <div class="flex w-fit h-full">
   <div class="flex flex-col h-full p-4 gap-2 border border-border rounded-l-md bg-bg-sidebar w-fit">
-    <div class="flex justify-center p-2">
-    </div>
+    <div class="bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] p-3 rounded-lg flex items-center justify-center mb-5">Y</div>
 
     <button
       (click)="selected.set(NavSection.Friends)"
@@ -29,7 +28,11 @@
       <i class="pi pi-server"></i>
     </button>
 
-    <button class="bg-[#5c79f8] mt-auto border rounded-full p-3 cursor-pointer">MD</button>
+    <button
+      class="bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] mt-auto border-0 rounded-full p-3 cursor-pointer"
+    >
+      MD
+    </button>
   </div>
   @if (selected() === NavSection.Friends) {
     <app-secondary-navbar></app-secondary-navbar>
