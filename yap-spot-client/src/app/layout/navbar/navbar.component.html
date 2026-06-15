@@ -1,23 +1,28 @@
-<div class="flex w-fit h-full">
+<div class="flex flex-1 w-full h-full">
   <div class="flex flex-col h-full p-4 gap-2 border border-border rounded-l-md bg-bg-sidebar w-fit">
-    <div class="bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] p-3 rounded-lg flex items-center justify-center mb-5">Y</div>
+    <button
+      (click)="selectFriends()"
+      class="bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] p-3 rounded-lg flex items-center justify-center mb-5 cursor-pointer"
+    >
+      Y
+    </button>
 
     <button
-      (click)="selected.set(NavSection.Friends)"
-      class="relative bg-bg-elevated border border-border rounded-md flex justify-center p-4 transition-colors"
-      [class.bg-primary-600]="selected() === NavSection.Friends"
+      (click)="selected.set(NavSection.Rooms)"
+      class="relative bg-bg-elevated border border-border rounded-md flex justify-center p-4 transition-colors cursor-pointer"
+      [class.bg-primary-600]="selected() === NavSection.Rooms"
     >
-      @if (selected() === NavSection.Friends) {
+      @if (selected() === NavSection.Rooms) {
         <span
           class="absolute -left-4 top-1/2 -translate-y-1/2 w-[3px] h-[60%] bg-primary-500 rounded-r-full"
         ></span>
       }
-      <i class="pi pi-users"></i>
+      <i class="pi pi-comments"></i>
     </button>
 
     <button
       (click)="selected.set(NavSection.Servers)"
-      class="relative bg-bg-elevated border border-border rounded-md flex justify-center p-4 transition-colors"
+      class="relative bg-bg-elevated border border-border rounded-md flex justify-center p-4 transition-colors cursor-pointer"
       [class.bg-primary-600]="selected() === NavSection.Servers"
     >
       @if (selected() === NavSection.Servers) {
@@ -34,7 +39,13 @@
       MD
     </button>
   </div>
+
+  @if (selected() === NavSection.Rooms) {
+    <app-secondary-navbar />
+  }
   @if (selected() === NavSection.Friends) {
-    <app-secondary-navbar></app-secondary-navbar>
+    <div class="flex-1 h-full overflow-hidden">
+      <router-outlet />
+    </div>
   }
 </div>
