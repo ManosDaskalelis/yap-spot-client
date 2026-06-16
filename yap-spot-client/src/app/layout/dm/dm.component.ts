@@ -29,7 +29,15 @@ export class DmComponent implements AfterViewChecked, OnInit {
   ngOnInit(): void {
     const username = this.route.snapshot.paramMap.get('username');
     this.user = userList.find((u) => u.username === username);
-    this.messages.set([]);
+    this.messages.set([
+      {
+        content: 'Hello',
+        senderUsername: this.user?.username ?? '',
+        senderPfp: this.user?.pfp ?? '',
+        timestamp: new Date(),
+        isOwn: false,
+      },
+    ]);
   }
 
   inputValue = '';

@@ -1,5 +1,4 @@
 <div class="flex flex-col h-full">
-
   <!-- Header -->
   <div class="flex items-center gap-3 px-4 py-3 border-b border-border bg-bg-sidebar shrink-0">
     <div class="relative shrink-0">
@@ -15,22 +14,24 @@
       <span class="text-sm font-semibold text-white">{{ user?.username }}</span>
       <span class="text-xs text-[#a0a8b8]">{{ user?.role }}</span>
     </div>
-    <i class="pi pi-comment shrink-0"></i>
-    <i class="pi pi-phone shrink-0"></i>
+    <button class="cursor-pointer">
+      <i class="pi pi-phone shrink-0"></i>
+    </button>
   </div>
 
   <!-- Messages area -->
   <div class="flex flex-col flex-1 overflow-y-auto px-4 py-4 gap-4">
     @for (msg of messages(); track $index) {
       <div class="flex gap-3" [class.flex-row-reverse]="msg.isOwn">
-
         <!-- Avatar -->
         <div class="shrink-0">
           @if (!msg.isOwn) {
             <img class="w-8 h-8 rounded-full object-cover" [src]="user?.pfp" alt="" />
           } @else {
-            <div class="w-8 h-8 rounded-full bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] flex items-center justify-center text-white text-xs font-bold">
-              Εγ
+            <div
+              class="w-8 h-8 rounded-full bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] flex items-center justify-center text-white text-xs font-bold"
+            >
+              Εγω
             </div>
           }
         </div>
@@ -38,7 +39,10 @@
         <!-- Bubble -->
         <div class="flex flex-col max-w-[70%]" [class.items-end]="msg.isOwn">
           <div class="flex items-baseline gap-2 mb-1" [class.flex-row-reverse]="msg.isOwn">
-            <span class="text-xs font-semibold" [ngClass]="msg.isOwn ? 'text-[#a0a8b8]' : 'text-primary-400'">
+            <span
+              class="text-xs font-semibold"
+              [ngClass]="msg.isOwn ? 'text-[#a0a8b8]' : 'text-primary-400'"
+            >
               {{ msg.senderUsername }}
             </span>
             <span class="text-[10px] text-[#566962]">{{ formatTime(msg.timestamp) }}</span>
@@ -73,7 +77,8 @@
         <i class="pi pi-send text-white text-xs"></i>
       </button>
     </div>
-    <p class="text-[10px] text-[#566962] mt-1 ml-1">Enter για αποστολή · Shift+Enter για νέα γραμμή</p>
+    <p class="text-[10px] text-[#566962] mt-1 ml-1">
+      Enter για αποστολή · Shift+Enter για νέα γραμμή
+    </p>
   </div>
-
 </div>
