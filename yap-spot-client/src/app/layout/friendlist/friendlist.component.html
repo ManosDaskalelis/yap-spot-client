@@ -8,14 +8,17 @@
     <input
       class="pl-9 bg-bg-main border border-border rounded-sm p-1 outline-none w-full"
       type="text"
-      placeholder="Find a room..."
+      placeholder="Search users..."
       (input)="findUser($event)"
     />
   </div>
 
-  @if (foundUsers().length > 0) {
+  @if (searchValue() && foundUsers().length > 0) {
     @for (foundUser of foundUsers(); track foundUser.username) {
-      <div class="flex flex-row items-center ml-3 cursor-pointer" (click)="goToDm(foundUser.username)">
+      <div
+        class="flex flex-row items-center ml-3 cursor-pointer"
+        (click)="goToDm(foundUser.username)"
+      >
         <button
           class="bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] border-0 rounded-full cursor-pointer mr-2 relative shrink-0"
         >
@@ -36,6 +39,10 @@
       </div>
       <hr class="border-t border-divider mx-2 mt-3" />
     }
+  } @else if (searchValue() && foundUsers().length === 0) {
+    <div class="flex justify-center mt-10 text-text-tertiary text-sm">
+      <span>No users found matching your search...</span>
+    </div>
   } @else {
     <div class="justify-start flex flex-col gap-3 ml-3">
       <span>Users Online - {{ usersOnline() }}</span>
@@ -58,8 +65,18 @@
             <span class="text-[#a0a8b8]">{{ user.username }}</span>
             <p class="font-mono text-[#566962] text-xs">{{ user.role }}</p>
           </div>
-          <i class="pi pi-comment mr-5 shrink-0"></i>
-          <i class="pi pi-phone mr-5 shrink-0"></i>
+          <div class="group flex items-center cursor-pointer relative">
+            <i class="pi pi-comment mr-5 shrink-0"></i>
+            <span class="hidden absolute bottom-5 right-0.5 group-hover:inline text-sm text-white"
+              >Message</span
+            >
+          </div>
+          <div class="group flex items-center cursor-pointer relative">
+            <i class="pi pi-phone mr-5 shrink-0"></i>
+            <span class="hidden absolute bottom-5 right-5 group-hover:inline text-sm text-white"
+              >Call</span
+            >
+          </div>
         </div>
         <hr class="border-t border-divider mx-2 mb-2" />
       }

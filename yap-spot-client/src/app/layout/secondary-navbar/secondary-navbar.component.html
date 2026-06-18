@@ -1,10 +1,10 @@
-<div class="flex flex-col w-fit h-full border-l-[#2a3345] p-4 gap-2 bg-bg-sidebar-infobar">
+<div class="flex flex-col w-fit h-full border-l-border p-4 gap-2 bg-bg-sidebar-infobar">
   <div class="flex flex-col gap-2 p-2">
     <span class="font-sans">yap-spot</span>
     <div class="flex bg-bg-hover p-3 items-center gap-2 border border-border rounded-sm">
       <i class="pi pi-search"></i>
       <input
-        class="bg-[#30302e] border border-border rounded-sm p-2 outline-none"
+        class="bg-bg-search border border-border rounded-sm p-2 outline-none"
         type="text"
         placeholder="Find a room..."
       />
@@ -12,7 +12,53 @@
   </div>
   <hr class="border-t border-divider mx-2" />
 
-  <div class="flex flex-col gap-3">
-   
+  <div class="flex flex-col gap-1">
+    <div class="flex flex-row gap-1 items-center cursor-pointer" (click)="generalOpen.set(!generalOpen())">
+      <i class="pi text-text-tertiary" [class.pi-angle-down]="generalOpen()" [class.pi-angle-right]="!generalOpen()"></i>
+      <span class="text-text-tertiary">General</span>
+    </div>
+    @if (generalOpen()) {
+    <div class="flex flex-col gap-3 items-start">
+      @for (room of roomInfo.chatRooms; track room.roomName) {
+        <div class="flex flex-row gap-2 text-sm w-full">
+          <div class="flex gap-1 flex-1 text-sm text-text-tertiary">
+            <i class="pi pi-hashtag"></i>
+            {{ room.roomName }}
+          </div>
+          @if (room.unReadMessages > 0) {
+            <span class="ml-auto text-xs bg-primary-600 text-white rounded-full px-1.5 py-0.5">
+              {{ room.unReadMessages }}
+            </span>
+          }
+        </div>
+      }
+    </div>
+    }
+  </div>
+  <div class="flex flex-col gap-1">
+    <div class="flex flex-row gap-1 items-center cursor-pointer" (click)="voiceOpen.set(!voiceOpen())">
+      <i class="pi text-text-tertiary" [class.pi-angle-down]="voiceOpen()" [class.pi-angle-right]="!voiceOpen()"></i>
+      <span class="text-text-tertiary">Voice channels</span>
+    </div>
+    @if (voiceOpen()) {
+    <div class="flex flex-col gap-3 items-start">
+      @for (vRoom of roomInfo.voiceRooms; track vRoom.voiceRoomName) {
+        <div class="flex flex-row gap-2 text-sm w-full">
+          <div class="flex gap-1 flex-1 text-sm text-text-tertiary">
+            <i class="pi pi-volume-up"></i>
+            {{ vRoom.voiceRoomName }}
+          </div>
+          @if (vRoom.usersInVoice > 0) {
+            <div class="flex text-green-600 gap-2 items-center">
+              <i class="pi pi-user"style="font-size: 0.8rem"></i>
+              <span class="ml-auto text-xs px-1.5 py-0.5">
+                {{ vRoom.usersInVoice }}
+              </span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+    }
   </div>
 </div>

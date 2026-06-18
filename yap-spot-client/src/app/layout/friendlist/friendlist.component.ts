@@ -12,6 +12,7 @@ export class FriendlistComponent implements OnInit {
   private router = inject(Router);
   usersOnline = signal<number | null>(null);
   foundUsers = signal<Users[]>([]);
+  searchValue = signal<string>('');
 
   users: Users[] = userList;
 
@@ -35,6 +36,7 @@ export class FriendlistComponent implements OnInit {
 
   findUser(event: Event) {
     const value = (event.target as HTMLInputElement).value;
+    this.searchValue.set(value);
     if (!value) {
       this.foundUsers.set([]);
       return;
@@ -42,6 +44,5 @@ export class FriendlistComponent implements OnInit {
     this.foundUsers.set(
       this.users.filter((u) => u.username.toLowerCase().includes(value.toLowerCase()))
     );
-    return this.foundUsers;
   }
 }
