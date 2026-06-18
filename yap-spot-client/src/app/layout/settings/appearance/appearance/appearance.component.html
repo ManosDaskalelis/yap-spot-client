@@ -8,9 +8,16 @@
     </div>
     <button
       (click)="themeService.toggle()"
-      class="flex items-center gap-2 border border-border rounded-sm px-3 py-1.5 text-sm text-text-primary hover:bg-bg-elevated transition-colors cursor-pointer"
+      class="flex items-center gap-4 border border-border rounded-sm px-3 py-1.5 text-sm text-text-primary hover:bg-bg-elevated transition-colors cursor-pointer"
     >
-      <i [class]="themeService.isLight() ? 'pi pi-moon' : 'pi pi-sun'"></i>
+      <div class="relative w-4 h-4">
+        <i class="pi pi-sun absolute transition-all duration-300"
+           [class.opacity-0]="themeService.isLight()"
+           [class.rotate-90]="themeService.isLight()"></i>
+        <i class="pi pi-moon absolute transition-all duration-300"
+           [class.opacity-0]="!themeService.isLight()"
+           [class.rotate-90]="!themeService.isLight()"></i>
+      </div>
       {{ themeService.isLight() ? 'Switch to Dark' : 'Switch to Light' }}
     </button>
   </div>

@@ -62,7 +62,9 @@
           (click)="navigateTo(item.key)"
         >
           <i [class]="'pi ' + item.icon"></i>
-          <span>{{ item.label }}</span>
+          <span [ngClass]="item.key === 'developer' ? 'font-mono' : 'font-fredoka'">{{
+            item.label
+          }}</span>
         </div>
       }
       <hr class="border-t border-divider mx-2 my-2" />

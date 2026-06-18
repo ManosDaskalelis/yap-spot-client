@@ -49,6 +49,7 @@ body {
     /* ─── Typography ──────────────────────────────────── */
     --font-sans: 'DM Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --font-fredoka: 'Fredoka', sans-serif;
 
     --text-xs: 11px;
     --text-sm: 13px;
