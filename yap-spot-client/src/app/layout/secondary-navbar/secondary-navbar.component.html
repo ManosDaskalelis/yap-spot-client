@@ -20,13 +20,13 @@
     @if (generalOpen()) {
     <div class="flex flex-col gap-3 items-start">
       @for (room of roomInfo.chatRooms; track room.roomName) {
-        <div class="flex flex-row gap-2 text-sm w-full">
+        <div class="flex flex-row gap-2 items-center text-sm w-full p-1 rounded-sm cursor-pointer hover:bg-border">
           <div class="flex gap-1 flex-1 text-sm text-text-tertiary">
             <i class="pi pi-hashtag"></i>
             {{ room.roomName }}
           </div>
           @if (room.unReadMessages > 0) {
-            <span class="ml-auto text-xs bg-primary-600 text-white rounded-full px-1.5 py-0.5">
+            <span class="text-xs bg-primary-600 text-white rounded-full px-1.5 py-0.5 leading-none">
               {{ room.unReadMessages }}
             </span>
           }
@@ -43,17 +43,15 @@
     @if (voiceOpen()) {
     <div class="flex flex-col gap-3 items-start">
       @for (vRoom of roomInfo.voiceRooms; track vRoom.voiceRoomName) {
-        <div class="flex flex-row gap-2 text-sm w-full">
+        <div class="flex flex-row gap-2 items-center text-sm w-full p-1 rounded-sm cursor-pointer hover:bg-border">
           <div class="flex gap-1 flex-1 text-sm text-text-tertiary">
             <i class="pi pi-volume-up"></i>
             {{ vRoom.voiceRoomName }}
           </div>
           @if (vRoom.usersInVoice > 0) {
-            <div class="flex text-green-600 gap-2 items-center">
-              <i class="pi pi-user"style="font-size: 0.8rem"></i>
-              <span class="ml-auto text-xs px-1.5 py-0.5">
-                {{ vRoom.usersInVoice }}
-              </span>
+            <div class="flex text-green-600 gap-1 items-center">
+              <i class="pi pi-user" style="font-size: 0.8rem"></i>
+              <span class="text-xs leading-none">{{ vRoom.usersInVoice }}</span>
             </div>
           }
         </div>
