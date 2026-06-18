@@ -24,7 +24,7 @@ export class SettingsComponent {
   appItems = [
     { key: 'appearance', label: 'Appearance', icon: 'pi-moon' },
     { key: 'notifications', label: 'Notifications', icon: 'pi-bell' },
-    { key: 'voice', label: 'Voice & Video', icon: 'pi-microphone' },
+    { key: 'voice-video', label: 'Voice & Video', icon: 'pi-microphone' },
     { key: 'keybinds', label: 'Keybinds', icon: 'pi-wrench' },
     { key: 'accessibility', label: 'Accessibility', icon: 'pi-eye-slash' },
   ];

@@ -8,6 +8,7 @@ import { PrivacyComponent } from './layout/settings/privacy-settings/privacy/pri
 import { SecurityComponent } from './layout/settings/security/security/security.component';
 import { ConnectionsComponent } from './layout/settings/connections/connections/connections.component';
 import { AppearanceComponent } from './layout/settings/appearance/appearance/appearance.component';
+import { VoiceAndVideoSettingsComponent } from './layout/settings/voice-video/voice-and-video-settings/voice-and-video-settings.component';
 
 export const routes: Routes = [
   { path: 'friends', component: FriendlistComponent },
@@ -21,6 +22,7 @@ export const routes: Routes = [
       {path: 'security', component: SecurityComponent},
       {path: 'connections', component: ConnectionsComponent},
       {path: 'appearance', component: AppearanceComponent},
-      {path: ':section', component: DmComponent},
+      {path: 'voice-video', component: VoiceAndVideoSettingsComponent},
+      {path: ':section', component: SecurityComponent},
     ]},
 ];

@@ -37,4 +37,8 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/room', firstRoom]);
     }
   }
+
+  goToSettings(): void {
+    this.router.navigate(['user-settings/my-account'])
+  }
 }
