@@ -9,7 +9,7 @@
   </div>
   <div class="flex flex-row flex-1 overflow-hidden">
     <div
-      class="flex flex-col bg-bg-sidebar-infobar max-w-50 w-full h-full gap-3 p-2 overflow-y-auto"
+      class="flex flex-col bg-bg-sidebar-infobar shrink-0 max-w-50 w-full h-full gap-3 p-2 overflow-y-auto"
     >
       <span
         class="px-2 pb-1 pt-2 text-xs font-semibold uppercase tracking-wider text-text-secondary"
@@ -73,7 +73,7 @@
         Log out
       </button>
     </div>
-    <div class="flex flex-row w-full h-full">
+    <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
       <router-outlet />
     </div>
   </div>

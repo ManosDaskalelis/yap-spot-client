@@ -1,25 +1,59 @@
-<div class="flex flex-col gap-5 m-10 w-full h-full">
+<div class="flex flex-col gap-5 p-10 items-center max-w-2xl h-full mx-auto">
   <div class="w-full">
     <span class="text-xl font-mono text-text-primary">My Account</span>
   </div>
-  <div
-    class="flex flex-col w-full max-w-md h-full rounded-lg border border-border bg-bg-card overflow-hidden"
-  >
-    <div
-      class="w-full max-h-16 h-full bg-gradient-to-br from-primary-700 via-primary-500 to cyan"
-    ></div>
-    <div class="flex flex-col px-5 pb-5"></div>
-    <div class="w-full flex items-end justify-between -mt-6 mb-3">
-      <div
-        class="w-12 h-12 rounded-full border-[3px] border-bg-card bg-gradient-to-br from-primary-500 to cyan flex items-center justify-center text-sm font-sans font-bold text-text-primary relative"
-      >
-        MK
-        <span class="absolute bottom-0 right-0 bg-online rounded-full border-0 p-1"></span>
+
+  <div class="flex flex-col w-full rounded-lg border border-border bg-bg-card gap-2">
+    <div class="w-full h-16 bg-gradient-to-br from-primary-700 via-primary-500 to-cyan"></div>
+
+    <div class="flex items-start justify-between px-5 pb-5">
+      <div class="flex gap-3">
+        <div
+          class="relative w-12 h-12 -mt-6 rounded-full border-[3px] border-bg-card bg-gradient-to-br from-primary-500 to-cyan flex items-center justify-center text-sm font-sans font-bold text-text-primary shrink-0"
+        >
+          MK
+          <span
+            class="absolute p-1 bg-online bottom-0 right-0 rounded-full border border-bg-elevated"
+          ></span>
+        </div>
+
+        <div class="flex flex-col pt-2">
+          <span class="text-lg font-sans font-semibold text-text-primary leading-tight"
+            >manos_k</span
+          >
+          <span class="text-sm font-sans text-text-secondary leading-tight whitespace-nowrap"
+            >Manos Dask · manos@yapspot.dev</span
+          >
+        </div>
       </div>
-      <button class="flex items-center gap-1.5 border border-border rounded-sm px-3.5 py-1.5">
-        <i class="pi pi-cog"></i>
-        Edit Profile
+
+      <button
+        class="flex items-center gap-1.5 border border-border rounded-sm px-3.5 py-1.5 mt-2 text-sm font-sans font-medium text-text-primary hover:bg-bg-hover transition-colors cursor-pointer shrink-0"
+      >
+        <i class="pi pi-cog text-xs"></i>
+        Edit profile
       </button>
     </div>
+  </div>
+  <div class="flex flex-col w-full rounded-lg border border-border bg-bg-card gap-2">
+    @for (item of accountItems; track item.key) {
+      <div
+        class="flex flex-row items-center justify-center gap-2 px-2 py-1.5 rounded text-sm w-full"
+      >
+        <div class="flex gap-2 items-center">
+          <i [class]="'pi ' + item.icon" [ngClass]="item.key === 'auth' ? 'text-green-500' : 'text-text-tertiary'"></i>
+          <div class="flex flex-col gap-0.5">
+            <span>{{ item.label }}</span>
+            <span [ngClass]="item.key === 'auth' ? 'text-green-500' : 'text-text-tertiary'">{{ item.secondLabel }}</span>
+          </div>
+        </div>
+        <button class="flex items-center justify-center border border-border rounded-sm p-2 ml-auto hover:bg-bg-elevated hover:text-white">
+          {{ item.btnLabel }}
+        </button>
+      </div>
+      @if (item.key !== 'auth') {
+        <hr class="border-border" />
+      }
+    }
   </div>
 </div>
