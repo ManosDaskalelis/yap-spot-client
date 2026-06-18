@@ -13,17 +13,32 @@
             name=""
             id=""
           >
-            <option class="bg-bg-elevated text-text-primary">MacBook Pro Microphone</option>
-            <option class="bg-bg-elevated text-text-primary">AirPods Pro</option>
-            <option class="bg-bg-elevated text-text-primary">Blue Yeti USB Mic</option>
+            @for (device of audioDevices; track device.deviceId) {
+              <option class="bg-bg-elevated text-text-primary">{{ device.label }}</option>
+            }
           </select>
         </div>
         <div class="flex flex-col gap-2 mt-2">
-            <div class="flex text-sm text-text-secondary">
-                <span>Input volume</span>
-                <span class="ml-auto">{{currentInputVol}}</span>
-            </div>
-            <input type="range" min="0" max="100" [(ngModel)]="currentInputVol">
+          <div class="flex text-sm text-text-secondary">
+            <span>Input volume</span>
+            <span class="ml-auto">{{ currentInputVol }}</span>
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            [(ngModel)]="currentInputVol"
+            (input)="onVolumeChange()"
+          />
+        </div>
+        <div class="flex flex-col gap-2 text-sm text-text-secondary">
+          <span>Mic volume level test</span>
+          <div class="w-full h-2 bg-bg-elevated rounded-full overflow-hidden border border-border">
+            <div
+              class="h-full bg-[linear-gradient(to_right,#5f72f8,#39aff2)] rounded-full transition-all duration-75"
+              [style.width.%]="volume()"
+            ></div>
+          </div>
         </div>
       </div>
     </div>

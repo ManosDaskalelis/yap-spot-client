@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -7,13 +7,40 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './voice-and-video-settings.component.html',
   styleUrl: './voice-and-video-settings.component.css',
 })
-export class VoiceAndVideoSettingsComponent implements OnInit {
+export class VoiceAndVideoSettingsComponent implements OnInit, OnDestroy {
   currentInputVol: number = 0;
   mediaStream: MediaStream | null = null;
   errorMessage: string = '';
+  audioDevices: MediaDeviceInfo[] = [];
+  audioContext: AudioContext | null = null;
+  analyser: AnalyserNode | null = null;
+  volume = signal(0);
+  gainNode: GainNode | undefined = undefined;
+  private animationId: number = 0;
 
-  ngOnInit(): void {
-    // this.requestMicrophonePermission();
+  async ngOnInit() {
+    await this.requestMicrophonePermission();
+  }
+
+  startAnalyzer() {
+    this.audioContext = new AudioContext();
+    this.analyser = this.audioContext.createAnalyser();
+    this.gainNode = this.audioContext?.createGain();
+
+    const source = this.audioContext.createMediaStreamSource(this.mediaStream!);
+    source.connect(this.gainNode);
+    this.gainNode.connect(this.analyser);
+
+    const dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+
+    const tick = () => {
+      this.analyser!.getByteFrequencyData(dataArray);
+      const avg = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
+      // this.currentInputVol = Math.round((avg / 255) * 100)
+      this.volume.set(Math.round((avg / 255) * 100));
+      requestAnimationFrame(tick);
+    };
+    tick();
   }
 
   async requestMicrophonePermission(): Promise<void> {
@@ -25,14 +52,15 @@ export class VoiceAndVideoSettingsComponent implements OnInit {
     }
 
     try {
-      // 2. Request the microphone permission
-      const allowedMedia = { audio: true, video: true };
+      const allowedMedia = { audio: true, video: false };
       this.mediaStream = await navigator.mediaDevices.getUserMedia(allowedMedia);
 
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      this.startAnalyzer();
+      this.audioDevices = devices.filter((d) => d.kind === 'audioinput');
+
       console.log('Microphone permission granted successfully.');
-      // You can now pass this.mediaStream to a MediaRecorder instance
     } catch (error: any) {
-      // 3. Handle errors (Permission denied, device missing, etc.)
       this.handlePermissionError(error);
     }
   }
@@ -49,11 +77,22 @@ export class VoiceAndVideoSettingsComponent implements OnInit {
     console.error(error);
   }
 
-  // Clean up the microphone stream when done or when component destroys
   stopMicrophone(): void {
     if (this.mediaStream) {
       this.mediaStream.getTracks().forEach((track) => track.stop());
       this.mediaStream = null;
     }
+  }
+
+  onVolumeChange(): void {
+    if (this.gainNode) {
+      this.gainNode.gain.value = this.currentInputVol / 50;
+    }
+  }
+
+  ngOnDestroy(): void {
+    cancelAnimationFrame(this.animationId);
+    this.stopMicrophone();
+    this.audioContext?.close();
   }
 }
