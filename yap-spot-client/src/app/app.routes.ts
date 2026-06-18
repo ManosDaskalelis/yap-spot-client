@@ -4,6 +4,10 @@ import { FriendlistComponent } from './layout/friendlist/friendlist.component';
 import { RoomComponent } from './layout/room/room.component';
 import { SettingsComponent } from './layout/settings/settings.component';
 import { MyAccountComponent } from './layout/settings/my-account-settings/my-account/my-account.component';
+import { PrivacyComponent } from './layout/settings/privacy-settings/privacy/privacy.component';
+import { SecurityComponent } from './layout/settings/security/security/security.component';
+import { ConnectionsComponent } from './layout/settings/connections/connections/connections.component';
+import { AppearanceComponent } from './layout/settings/appearance/appearance/appearance.component';
 
 export const routes: Routes = [
   { path: 'friends', component: FriendlistComponent },
@@ -13,6 +17,10 @@ export const routes: Routes = [
     component: SettingsComponent ,
     children: [
       {path: 'my-account', component: MyAccountComponent},
+      {path: 'privacy', component: PrivacyComponent},
+      {path: 'security', component: SecurityComponent},
+      {path: 'connections', component: ConnectionsComponent},
+      {path: 'appearance', component: AppearanceComponent},
       {path: ':section', component: DmComponent},
     ]},
 ];

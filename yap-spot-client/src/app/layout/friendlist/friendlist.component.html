@@ -1,6 +1,6 @@
 <div class="ml-1">
   <div class="flex flex-row justify-center mb-2 mt-2">
-    <span>Friends List</span>
+    <span class="text-text-primary">Friends List</span>
   </div>
   <hr class="border-t border-divider mx-2 mb-2" />
   <div class="relative mb-5 mt-3 px-1">
@@ -45,10 +45,10 @@
     </div>
   } @else {
     <div class="justify-start flex flex-col gap-3 ml-3">
-      <span>Users Online - {{ usersOnline() }}</span>
+      <span class="text-text-primary">Users Online - {{ usersOnline() }}</span>
       <hr class="border-t border-divider" />
       @for (user of users; track user.username) {
-        <div class="flex flex-row items-center cursor-pointer" (click)="goToDm(user.username)">
+        <div class="flex flex-row items-center cursor-pointer text-text-primary" (click)="goToDm(user.username)">
           <button
             class="bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] border-0 rounded-full cursor-pointer mr-2 relative shrink-0"
           >
@@ -67,13 +67,13 @@
           </div>
           <div class="group flex items-center cursor-pointer relative">
             <i class="pi pi-comment mr-5 shrink-0"></i>
-            <span class="hidden absolute bottom-5 right-0.5 group-hover:inline text-sm text-white"
+            <span class="hidden absolute bottom-5 right-0.5 group-hover:inline text-sm text-text-primary"
               >Message</span
             >
           </div>
           <div class="group flex items-center cursor-pointer relative">
             <i class="pi pi-phone mr-5 shrink-0"></i>
-            <span class="hidden absolute bottom-5 right-5 group-hover:inline text-sm text-white"
+            <span class="hidden absolute bottom-5 right-5 group-hover:inline text-sm text-text-primary"
               >Call</span
             >
           </div>

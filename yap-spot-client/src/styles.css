@@ -77,10 +77,6 @@ body {
     --color-text-primary: #0B0E14;
     --color-text-secondary: #4B5563;
     --color-text-tertiary: #9CA3AF;
-
-    i {
-        color: #0B0E14
-    }
 }
 
 .dark-theme {
@@ -95,8 +91,4 @@ body {
     --color-text-primary: #FFFFFF;
     --color-text-secondary: #A0A8B8;
     --color-text-tertiary: #6D7485;
-
-    i {
-        color: #FFFFFF;
-    }
 }
