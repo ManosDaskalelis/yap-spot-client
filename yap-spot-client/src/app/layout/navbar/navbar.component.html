@@ -20,7 +20,7 @@
     </button>
 
     <button
-      (click)="selected.set(NavSection.Rooms)"
+      (click)="selectRooms()"
       class="relative bg-bg-elevated border border-border rounded-md flex justify-center p-4 transition-colors cursor-pointer"
       [class.bg-primary-600]="selected() === NavSection.Rooms"
     >
@@ -46,18 +46,19 @@
     </button>
 
     <button
-      class="bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] mt-auto border-0 rounded-full p-3 cursor-pointer"
+      class="bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] mt-auto border-0 rounded-full p-3 cursor-pointer relative"
     >
       MD
+      <span
+        class="absolute bottom-0 right-1 rounded-full w-3 h-3 border-2 border-border bg-online"
+      ></span>
     </button>
   </div>
 
   @if (selected() === NavSection.Rooms) {
     <app-secondary-navbar />
   }
-  @if (selected() === NavSection.Friends) {
-    <div class="flex-1 h-full overflow-hidden">
-      <router-outlet />
-    </div>
-  }
+  <div class="flex-1 h-full overflow-hidden">
+    <router-outlet />
+  </div>
 </div>

@@ -13,50 +13,95 @@
   <hr class="border-t border-divider mx-2" />
 
   <div class="flex flex-col gap-1">
-    <div class="flex flex-row gap-1 items-center cursor-pointer" (click)="generalOpen.set(!generalOpen())">
-      <i class="pi text-text-tertiary" [class.pi-angle-down]="generalOpen()" [class.pi-angle-right]="!generalOpen()"></i>
+    <div
+      class="flex flex-row gap-1 items-center cursor-pointer"
+      (click)="generalOpen.set(!generalOpen())"
+    >
+      <i
+        class="pi text-text-tertiary"
+        [class.pi-angle-down]="generalOpen()"
+        [class.pi-angle-right]="!generalOpen()"
+      ></i>
       <span class="text-text-tertiary">General</span>
     </div>
     @if (generalOpen()) {
-    <div class="flex flex-col gap-3 items-start">
-      @for (room of roomInfo.chatRooms; track room.roomName) {
-        <div class="flex flex-row gap-2 items-center text-sm w-full p-1 rounded-sm cursor-pointer hover:bg-border">
-          <div class="flex gap-1 flex-1 text-sm text-text-tertiary">
-            <i class="pi pi-hashtag"></i>
-            {{ room.roomName }}
+      <div class="flex flex-col gap-3 items-start">
+        @for (room of roomInfo.chatRooms; track room.roomName) {
+          <div
+            class="flex flex-row gap-2 items-center text-sm w-full p-1 rounded-sm cursor-pointer hover:bg-border"
+            (click)="goToRoom(room.roomName)"
+          >
+            <div class="flex gap-1 flex-1 text-sm text-text-tertiary">
+              <i class="pi pi-hashtag"></i>
+              {{ room.roomName }}
+            </div>
+            @if (room.unReadMessages > 0) {
+              <span
+                class="text-xs bg-primary-600 text-white rounded-full px-1.5 py-0.5 leading-none"
+              >
+                {{ room.unReadMessages }}
+              </span>
+            }
           </div>
-          @if (room.unReadMessages > 0) {
-            <span class="text-xs bg-primary-600 text-white rounded-full px-1.5 py-0.5 leading-none">
-              {{ room.unReadMessages }}
-            </span>
-          }
-        </div>
-      }
-    </div>
+        }
+      </div>
     }
   </div>
   <div class="flex flex-col gap-1">
-    <div class="flex flex-row gap-1 items-center cursor-pointer" (click)="voiceOpen.set(!voiceOpen())">
-      <i class="pi text-text-tertiary" [class.pi-angle-down]="voiceOpen()" [class.pi-angle-right]="!voiceOpen()"></i>
+    <div
+      class="flex flex-row gap-1 items-center cursor-pointer"
+      (click)="voiceOpen.set(!voiceOpen())"
+    >
+      <i
+        class="pi text-text-tertiary"
+        [class.pi-angle-down]="voiceOpen()"
+        [class.pi-angle-right]="!voiceOpen()"
+      ></i>
       <span class="text-text-tertiary">Voice channels</span>
     </div>
     @if (voiceOpen()) {
-    <div class="flex flex-col gap-3 items-start">
-      @for (vRoom of roomInfo.voiceRooms; track vRoom.voiceRoomName) {
-        <div class="flex flex-row gap-2 items-center text-sm w-full p-1 rounded-sm cursor-pointer hover:bg-border">
-          <div class="flex gap-1 flex-1 text-sm text-text-tertiary">
-            <i class="pi pi-volume-up"></i>
-            {{ vRoom.voiceRoomName }}
-          </div>
-          @if (vRoom.usersInVoice > 0) {
-            <div class="flex text-green-600 gap-1 items-center">
-              <i class="pi pi-user" style="font-size: 0.8rem"></i>
-              <span class="text-xs leading-none">{{ vRoom.usersInVoice }}</span>
+      <div class="flex flex-col gap-3 items-start">
+        @for (vRoom of roomInfo.voiceRooms; track vRoom.voiceRoomName) {
+          <div
+            class="flex flex-row gap-2 items-center text-sm w-full p-1 rounded-sm cursor-pointer hover:bg-border"
+          >
+            <div class="flex gap-1 flex-1 text-sm text-text-tertiary">
+              <i class="pi pi-volume-up"></i>
+              {{ vRoom.voiceRoomName }}
             </div>
-          }
-        </div>
-      }
-    </div>
+            @if (vRoom.usersInVoice > 0) {
+              <div class="flex text-green-600 gap-1 items-center">
+                <i class="pi pi-user" style="font-size: 0.8rem"></i>
+                <span class="text-xs leading-none">{{ vRoom.usersInVoice }}</span>
+              </div>
+            }
+          </div>
+        }
+      </div>
     }
+  </div>
+  <div class="mt-auto">
+    <div class="">
+      <hr class="border-t border-divider mb-3 -mx-4" />
+      <div class="flex flex-row gap-2 items-center">
+        <div
+          class="w-full max-w-8 h-8 rounded-full bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] flex items-center justify-center text-white text-xs font-semibold cursor-pointer relative"
+        >
+          MD
+          <span
+            class="absolute bottom-0 right-0 rounded-full w-3 h-3 border-2 border-border bg-online"
+          ></span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-sm">Manos_D</span>
+          <span class="text-sm text-text-tertiary">Online</span>
+        </div>
+        <div class="flex flex-row ml-auto">
+          <button class="flex items-center border border-border rounded-sm  p-2 cursor-pointer" (click)="goToSettings()">
+            <i class="pi pi-cog"></i>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

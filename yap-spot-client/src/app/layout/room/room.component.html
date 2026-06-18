@@ -1,0 +1,85 @@
+<div class="flex h-full w-full">
+
+  <!-- Chat area -->
+  <div class="flex flex-col flex-1 overflow-hidden">
+
+    <!-- Header -->
+    <div class="flex items-center gap-2 px-4 py-3 border-b border-border bg-bg-sidebar shrink-0">
+      <i class="pi pi-hashtag text-[#a0a8b8]"></i>
+      <span class="text-sm font-semibold text-white">{{ roomName }}</span>
+    </div>
+
+    <!-- Messages -->
+    <div class="flex flex-col flex-1 overflow-y-auto px-4 py-4 gap-4">
+      @for (msg of messages(); track $index) {
+        <div class="flex gap-3" [class.flex-row-reverse]="msg.isOwn">
+          <div class="shrink-0">
+            @if (msg.isOwn) {
+              <div class="w-8 h-8 rounded-full bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] flex items-center justify-center text-white text-xs font-bold">
+                Εγ
+              </div>
+            }
+          </div>
+          <div class="flex flex-col max-w-[70%]" [class.items-end]="msg.isOwn">
+            <div class="flex items-baseline gap-2 mb-1" [class.flex-row-reverse]="msg.isOwn">
+              <span class="text-xs font-semibold" [ngClass]="msg.isOwn ? 'text-[#a0a8b8]' : 'text-primary-400'">
+                {{ msg.senderUsername }}
+              </span>
+              <span class="text-[10px] text-[#566962]">{{ formatTime(msg.timestamp) }}</span>
+            </div>
+            <div
+              class="px-3 py-2 rounded-lg text-sm leading-relaxed break-words"
+              [ngClass]="msg.isOwn ? 'bg-primary-600 text-white' : 'bg-bg-elevated text-[#a0a8b8]'"
+            >
+              {{ msg.content }}
+            </div>
+          </div>
+        </div>
+      }
+      <div #messagesEnd></div>
+    </div>
+
+    <!-- Input -->
+    <div class="px-4 py-3 shrink-0 border-t border-border">
+      <div class="flex items-center gap-2 bg-bg-elevated border border-border rounded-lg px-3 py-2">
+        <textarea
+          class="flex-1 bg-transparent outline-none resize-none text-sm text-[#a0a8b8] placeholder:text-[#566962] leading-relaxed max-h-32"
+          rows="1"
+          [placeholder]="'Message #' + roomName"
+          [(ngModel)]="inputValue"
+          (keydown)="onKeydown($event)"
+        ></textarea>
+        <button
+          (click)="sendMessage()"
+          class="shrink-0 bg-[linear-gradient(to_bottom_right,#5f72f8,#39aff2)] rounded-md p-2 cursor-pointer border-0 flex items-center justify-center"
+          [class.opacity-40]="!inputValue.trim()"
+        >
+          <i class="pi pi-send text-white text-xs"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Users sidebar -->
+  <div class="flex flex-col w-48 h-full border-l border-border bg-bg-sidebar px-3 py-4 gap-3 shrink-0">
+    <span class="text-xs text-[#566962] uppercase font-semibold tracking-wider">
+      Members — {{ usersInRoom.length }}
+    </span>
+    @for (user of usersInRoom; track user.username) {
+      <div class="flex items-center gap-2">
+        <div class="relative shrink-0">
+          <img class="w-7 h-7 rounded-full object-cover" [src]="user.pfp" alt="" />
+          <span
+            class="absolute bottom-0 right-0 rounded-full w-2 h-2 border border-border"
+            [class.bg-online]="user.status === 'online'"
+            [class.bg-away]="user.status === 'away'"
+            [class.bg-offline]="user.status === 'offline'"
+          ></span>
+        </div>
+        <span class="text-sm text-[#a0a8b8] truncate">{{ user.username }}</span>
+      </div>
+    }
+  </div>
+
+</div>

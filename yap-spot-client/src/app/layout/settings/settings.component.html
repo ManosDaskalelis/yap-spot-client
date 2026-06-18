@@ -1,0 +1,80 @@
+<div class="flex flex-col h-full">
+  <div
+    class="flex flex-row text-sm gap-2 text-text-secondary bg-bg-sidebar-infobar border border-border shrink-0"
+  >
+    <div class="flex flex-row gap-2 ml-2 mt-2 mb-2">
+      <i class="pi pi-cog"></i>
+      <span>Settings Page</span>
+    </div>
+  </div>
+  <div class="flex flex-row flex-1 overflow-hidden">
+    <div
+      class="flex flex-col bg-bg-sidebar-infobar max-w-50 w-full h-full gap-3 p-2 overflow-y-auto"
+    >
+      <span
+        class="px-2 pb-1 pt-2 text-xs font-semibold uppercase tracking-wider text-text-secondary"
+        >Account</span
+      >
+      @for (item of accountItems; track item.key) {
+        <div
+          class="flex flex-row items-center gap-2 px-2 py-1.5 rounded cursor-pointer text-sm w-full"
+          [ngClass]="
+            selected() === item.key
+              ? 'bg-blue-900 text-white'
+              : 'text-text-secondary hover:bg-bg-elevated hover:text-white'
+          "
+          (click)="navigateTo(item.key)"
+        >
+          <i [class]="'pi ' + item.icon"></i>
+          <span>{{ item.label }}</span>
+        </div>
+      }
+      <hr class="border-t border-divider mx-2 my-2" />
+      <span class="px-2 pb-1 text-xs font-semibold uppercase tracking-wider text-text-secondary"
+        >App</span
+      >
+      @for (item of appItems; track item.key) {
+        <div
+          class="flex flex-row items-center gap-2 px-2 py-1.5 rounded cursor-pointer text-sm w-full"
+          [ngClass]="
+            selected() === item.key
+              ? 'bg-blue-900 text-white'
+              : 'text-text-secondary hover:bg-bg-elevated hover:text-white'
+          "
+          (click)="navigateTo(item.key)"
+        >
+          <i [class]="'pi ' + item.icon"></i>
+          <span>{{ item.label }}</span>
+        </div>
+      }
+      <hr class="border-t border-divider mx-2 my-2" />
+      <span class="px-2 pb-1 text-xs font-semibold uppercase tracking-wider text-text-secondary"
+        >Advanced</span
+      >
+      @for (item of developItems; track item.key) {
+        <div
+          class="flex flex-row items-center gap-2 px-2 py-1.5 rounded cursor-pointer text-sm w-full"
+          [ngClass]="
+            selected() === item.key
+              ? 'bg-blue-900 text-white'
+              : 'text-text-secondary hover:bg-bg-elevated hover:text-white'
+          "
+          (click)="navigateTo(item.key)"
+        >
+          <i [class]="'pi ' + item.icon"></i>
+          <span>{{ item.label }}</span>
+        </div>
+      }
+      <hr class="border-t border-divider mx-2 my-2" />
+      <button
+        class="flex flex-row items-center gap-2 px-2 py-1.5 rounded cursor-pointer text-sm w-full text-red-800 hover:bg-bg-elevated"
+      >
+        <i class="pi pi-sign-out"></i>
+        Log out
+      </button>
+    </div>
+    <div class="flex flex-row w-full h-full">
+      <router-outlet />
+    </div>
+  </div>
+</div>
